@@ -18,13 +18,13 @@ Mod1 + Tab
 "loginctl lock-session $XDG_SESSION_ID"
 Mod4 + l
 
-"sshot clip"
+"sshot -s -c"
 Print
-"sshot clip"
+"sshot -s -c"
 Mod4 + s
-"sshot save"
+"sshot -s -c -f -x"
 Mod4 + Shift + s
-"sshot decode"
+"sshot -s -c -d"
 Mod4 + Shift + Control + s
 "cpick"
 Mod4 + c
