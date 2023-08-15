@@ -1,0 +1,3 @@
+! vim: ft=xmodmap
+
+keycode 108 = Menu NoSymbol Menu

@@ -1,0 +1,27 @@
+! vim: filetype=xdefaults:commentstring=!%s
+
+! standard terminal colors
+*.background:       #0D0E15
+*.foreground:       #F1F7ED
+! mg
+*.color0:           #252550
+*.color8:           #353570
+*.color1:           #D7263D
+! err
+*.color9:           #E7365D
+*.color2:           #B0DB43
+! ok
+*.color10:		      #C0EB63
+*.color3:           #FFAE03
+! warn
+*.color11:		      #FFBE23
+*.color4:           #0061FE
+! info
+*.color12:		      #1071FE
+*.color5:           #F53385
+*.color13:		      #F543A5
+*.color6:           #3FA7D6
+*.color14:		      #4FB7F6
+*.color7:           #E0E0E0
+! sel
+*.color15:		      #FFFFFF

@@ -1,0 +1,24 @@
+[Default Applications]
+x-scheme-handler/postman=Postman.desktop
+text/plain=nvim.desktop
+application/x-zerosize=nvim.desktop
+x-scheme-handler/discord-402572971681644545=discord-402572971681644545.desktop
+application/octet-stream=aseprite_fast.desktop
+application/vnd.ms-publisher=nvim.desktop
+x-scheme-handler/aucapture=aucapture-opener.desktop
+
+[Added Associations]
+application/json=nvim.desktop;
+text/vnd.trolltech.linguist=nvim.desktop;
+application/pdf=org.pwmt.zathura.desktop;
+image/jpeg=nsxiv.desktop;imv-dir.desktop;org.inkscape.Inkscape.desktop;
+image/png=imv-dir.desktop;nsxiv.desktop;imv.desktop;aseprite_fast.desktop;org.inkscape.Inkscape.desktop;
+application/x-zerosize=nvim.desktop;
+image/gif=imv.desktop;
+application/xml=nvim.desktop;
+text/x-lua=nvim.desktop;
+application/octet-stream=aseprite_fast.desktop;Aseprite.desktop;
+application/x-shellscript=nvim.desktop;
+text/x-tex=nvim.desktop;
+image/svg+xml=nsxiv.desktop;org.inkscape.Inkscape.desktop;
+application/vnd.ms-publisher=nvim.desktop;

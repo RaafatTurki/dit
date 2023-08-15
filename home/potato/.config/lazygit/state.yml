@@ -1,0 +1,10 @@
+lastupdatecheck: 0
+recentrepos:
+    - /home/potato/.config/nvim
+    - /home/potato/work/Tamweeniya-API
+    - /home/potato/sectors/nvim/hex.nvim
+    - /home/potato/.local/share/nvim/lazy/nvim-treesitter
+    - /home/potato/.local/share/nvim/lazy/gitsigns.nvim
+startuppopupversion: 5
+customcommandshistory: []
+hidecommandlog: false

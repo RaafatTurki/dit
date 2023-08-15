@@ -1,0 +1,50 @@
+# vim: cms=#%s
+
+[user]
+  name = Raafat Turki
+  email = raafat.turki@proton.me
+
+# [core]
+  # autocrlf = input
+  # excludesfile = /home/potato/.config/git/gitignore_global
+  # pager = diff-so-fancy | less --tabs=4 -RFX
+  # pager = diff-so-fancy | less --tabs=2 -RFX
+  # pager = difft
+  # pager = diff-so-fancy
+  # pager = diff-so-fancy | less --tabs=4 -RFX
+
+[init]
+  defaultBranch = master
+
+[pull]
+  ff = only
+
+# [merge]
+# 	tool = vimdiff
+# 	conflictstyle = diff3
+
+# [mergetool]
+#   keepBackup = false
+#   prompt = false
+
+# [mergetool "vimdiff"]
+#   cmd = "nvim  -d $LOCAL $REMOTE"
+
+[alias]
+  glog = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  last = log -1 HEAD --stat
+  stat = status -sb
+  comm = commit -m
+  conf = config --global -l
+  # update = fetch --dry-run
+  # rv = remote -v
+  # d = diff
+  # dv = difftool -t vimdiff -y
+  # cloner = clone --recursive
+  # dft = difftool
+  # se = !git rev-list --all | xargs git grep -F
+  # conv-ssh = remote set-url origin git@github.com:RaafatTurki/
+
+[advice]
+  addEmptyPathspec = false
+  statusHints = false

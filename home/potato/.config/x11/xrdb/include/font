@@ -1,0 +1,11 @@
+! vim: filetype=xdefaults:commentstring=!%s
+
+! #define FONT_NAME FiraCode Nerd Font Mono
+! #define FONT_SIZE 12
+
+#define FONT_NAME BlexMono Nerd Font Mono
+#define FONT_SIZE 12
+
+*.font: FONT_NAME:size=FONT_SIZE
+*.font_name: FONT_NAME
+*.font_size: FONT_SIZE
