@@ -22,3 +22,4 @@ application/x-shellscript=nvim.desktop;
 text/x-tex=nvim.desktop;
 image/svg+xml=nsxiv.desktop;org.inkscape.Inkscape.desktop;
 application/vnd.ms-publisher=nvim.desktop;
+inode/directory=thunar.desktop;

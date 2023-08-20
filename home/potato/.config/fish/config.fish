@@ -37,13 +37,6 @@ if status is-interactive
   # complete -f -c nvims -a (find $nvim_sessions_dir -printf '%P\n' | xargs)
   # complete -f -c cds -a (find $nvim_sessions_dir -printf '%P\n' | xargs)
 
-  alias nvimc='nvims ~/.config/nvim'
-  alias fishc='nvims ~/.config/fish'
-  alias x11c='nvims ~/.config/x11/'
-  alias hlwmc='nvims ~/.config/herbstluftwm/'
-  alias bins='nvims ~/.local/bin'
-  alias notes='nvims ~/files/docs/notes'
-  
   # completions that shouldn't be here
   # complete -f -c win -a (find . -name *.exe -type f -printf '%P\n')
   

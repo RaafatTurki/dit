@@ -64,8 +64,17 @@ alias xkeys="xev -rv | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf \
 # alias gdgodot="e godot -o 'godot -e'"
 # alias gdgodot="e godot -o 'devour godot -e'"
 # alias gdplay="e godot -o godot"
-alias gitc="$EDITOR $XDG_CONFIG_HOME/git/config"
+# alias gitc="$EDITOR $XDG_CONFIG_HOME/git/config"
 alias profc="$EDITOR ~/.profile"
+alias xprofc="$EDITOR ~/.xprofile"
+
+alias nvimc="nvims $XDG_CONFIG_HOME/nvim"
+alias gitc="nvims $XDG_CONFIG_HOME/git"
+alias fishc="nvims $XDG_CONFIG_HOME/fish"
+alias x11c="nvims $XDG_CONFIG_HOME/x11/"
+alias hlwmc="nvims $XDG_CONFIG_HOME/herbstluftwm/"
+alias bins="nvims ~/.local/bin"
+alias notes="nvims ~/files/docs/notes"
 
 # alias gtk_inspect='GTK_DEBUG=interactive '
 
