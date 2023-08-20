@@ -4,7 +4,8 @@
   name = Raafat Turki
   email = raafat.turki@proton.me
 
-# [core]
+[core]
+  excludesFile = ~/.config/git/.gitignore
   # autocrlf = input
   # excludesfile = /home/potato/.config/git/gitignore_global
   # pager = diff-so-fancy | less --tabs=4 -RFX
