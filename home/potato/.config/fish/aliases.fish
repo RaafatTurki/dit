@@ -68,13 +68,15 @@ alias xkeys="xev -rv | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf \
 alias profc="$EDITOR ~/.profile"
 alias xprofc="$EDITOR ~/.xprofile"
 
-alias nvimc="nvims $XDG_CONFIG_HOME/nvim"
-alias gitc="nvims $XDG_CONFIG_HOME/git"
-alias fishc="nvims $XDG_CONFIG_HOME/fish"
-alias x11c="nvims $XDG_CONFIG_HOME/x11/"
-alias hlwmc="nvims $XDG_CONFIG_HOME/herbstluftwm/"
-alias bins="nvims ~/.local/bin"
-alias notes="nvims ~/files/docs/notes"
+alias nvims='nvim -c "SessionLoad"'
+
+alias nvimc="cd $XDG_CONFIG_HOME/nvim && nvims"
+alias gitc="cd $XDG_CONFIG_HOME/git && nvims"
+alias fishc="cd $XDG_CONFIG_HOME/fish && nvims"
+alias x11c="cd $XDG_CONFIG_HOME/x11/ && nvims"
+alias hlwmc="cd $XDG_CONFIG_HOME/herbstluftwm/ && nvims"
+alias bins="cd ~/.local/bin && nvims"
+alias notes="cd ~/files/docs/notes && nvims"
 
 # alias gtk_inspect='GTK_DEBUG=interactive '
 

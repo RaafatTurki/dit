@@ -84,8 +84,8 @@ hc keybind $Mod-r remove
 hc keybind $Mod-f fullscreen toggle
 hc keybind $Mod-w set_attr clients.focus.floating toggle
 # cycles through the available layouts within a frame, but skips layouts, if the layout change wouldn't affect the actual window positions.
-# hc keybind $Mod-space or , and . compare tags.focus.curframe_wcount = 2 . cycle_layout +1 vertical horizontal max vertical grid , cycle_layout +1
-hc keybind $Mod-space or , and . compare tags.focus.curframe_wcount = 2 . cycle_layout +1 max vertical horizontal grid , cycle_layout +1
+hc keybind $Mod-space or , and . compare tags.focus.curframe_wcount = 2 . cycle_layout +1 vertical horizontal max vertical grid , cycle_layout +1
+# hc keybind $Mod-space or , and . compare tags.focus.curframe_wcount = 2 . cycle_layout +1 max vertical horizontal grid , cycle_layout +1
 
 
 # tags

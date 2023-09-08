@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/usr/bin/env bash
 
 # function appendpath
 #     set PATH $PATH:$1
@@ -98,8 +98,15 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 # export TDESKTOP_I_KNOW_ABOUT_GTK_INCOMPATIBILITY=1
 # export TDESKTOP_DISABLE_DESKTOP_FILE_GENERATION=1
 
+# c#
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+
 # java
 export _JAVA_AWT_WM_NONREPARENTING=1
+
+# lua
+export LUA_PATH='/usr/share/lua/5.4/?.lua;/usr/share/lua/5.4/?/init.lua;/usr/lib/lua/5.4/?.lua;/usr/lib/lua/5.4/?/init.lua;./?.lua;./?/init.lua;/home/potato/.luarocks/share/lua/5.4/?.lua;/home/potato/.luarocks/share/lua/5.4/?/init.lua'
+export LUA_CPATH='/usr/lib/lua/5.4/?.so;/usr/lib/lua/5.4/loadall.so;./?.so;/home/potato/.luarocks/lib/lua/5.4/?.so'
 
 # unclutter home
 export HISTFILE="$XDG_DATA_HOME/bash_history"

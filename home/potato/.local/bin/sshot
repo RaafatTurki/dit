@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+
 title='sshot'
 
 cache_path="/tmp/sshot"
@@ -99,7 +100,7 @@ fi
 
 # attempt to take screenshot
 if $slop; then
-  maim --hidecursor --quality 1 --bordersize 1 -c 1,1,1,1 $cache_path -s
+  maim --hidecursor --quality 1 --bordersize 1 -c 1,1,1,1 $cache_path -s -k
 else
   maim --hidecursor --quality 1 --bordersize 1 -c 1,1,1,1 $cache_path
 fi
@@ -146,7 +147,8 @@ if $ocr; then
 fi
 
 if $notify; then
-  notify-send "$title" "OCR: $ocr_data\nDEC: $decode_data"
+  convert ${cache_path} -resize 48x48 ${cache_path}
+  notify-send -i ${cache_path} "$title" "OCR: $ocr_data\nDEC: $decode_data"
 fi
 
 # STATUS CODES
