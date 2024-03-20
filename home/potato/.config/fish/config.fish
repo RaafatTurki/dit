@@ -39,10 +39,16 @@ if status is-interactive
 
   # completions that shouldn't be here
   # complete -f -c win -a (find . -name *.exe -type f -printf '%P\n')
-  
+
   # if test (command -v step-cli)
   #   step-cli completion fish
   # end
+
+  # if test (command -v luarocks)
+  #   luarocks completion fish
+  # end
+
+
 
   complete -c sshot -f
   complete -c sshot -a 'clip' -d 'Take a screenshot and save it into clipboard'

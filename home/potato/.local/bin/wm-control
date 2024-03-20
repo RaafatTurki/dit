@@ -35,11 +35,11 @@ case $1 in
     display 1 󰃠 $(wm-backlight get)%
     ;;
   v+)
-    pamixer -i 10 --allow-boost --set-limit 300
+    pamixer -i 5 --allow-boost --set-limit 500
     display-volume
     ;;
   v-)
-    pamixer -d 10 --allow-boost --set-limit 300
+    pamixer -d 5 --allow-boost --set-limit 500
     display-volume
     ;;
   mute)
@@ -47,6 +47,9 @@ case $1 in
     display-volume
     ;;
   kbd)
+    display 1 󰌌 $(wm-xkbd)
+    ;;
+  bar)
     display 1 󰌌 $(wm-xkbd)
     ;;
   # hlwm-ws)

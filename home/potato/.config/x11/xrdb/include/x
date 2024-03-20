@@ -1,4 +1,5 @@
 ! vim: filetype=xdefaults:commentstring=!%s
-
-! Xft.dpi:            DPI
+! Xft.dpi:            141.21
 ! Xft.antialias:      true
+Xcursor.size: 10
+! Xcursor.theme: capitaine-cursors-light

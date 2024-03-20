@@ -1,35 +1,111 @@
 #!/usr/bin/env bash
 
-intern=eDP-1
-extern=HDMI-1-0
-# intern=eDP
-# extern=HDMI-A-1-0
+internal=eDP-1
+external=HDMI-1-0
 
-# xrandr --output $intern --auto --mode 1440x900
-# xrandr --output $extern --right-of $intern
+internal_res=1920x1080
+external_res=2560x1440
 
-# xrandr --output HDMI-A-1-0 --auto --mode 2560x1440 --right-of eDP-1
+internal_rate=120
+external_rate=120
 
-# xrandr --output $extern --auto --mode 2560x1440 --right-of $intern
-# xrandr --output $extern --auto --right-of $intern
-# xrandr --output $extern --auto --right-of $intern
+# internal_bg=~/files/pics/wallpapers/punpun_dim.png
+# external_bg=~/files/pics/wallpapers/berserk_skull.jpg
 
-# xrandr --output "$intern" --auto --mode 1440x900 --output "$extern" --auto --right-of "$intern"
+mon=""
 
-# xrandr --output "$intern" --auto --mode 1440x900
-# xrandr --output "eDP-1" --auto --mode 1440x900
-# xrandr --output "eDP" --auto --mode 1440x900
+usage() {
+  echo "Usage: $0 [OPTIONS]"
+  echo "Options:"
+  echo "  -m, --monitor [intern|extern]   Set the monitor to switch to"
+  echo "  -h, --help                      Display this help message"
+}
 
-# xrandr --output "$extern" --auto --mode 1440x900 --rate 120 --same-as "$intern"
-# xrandr --output "$extern" --auto --right-of "$intern"
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    -m|--monitor)
+      if [[ -z $2 || $2 == -* ]]; then
+        echo "Error: Value missing for option '$1'"
+        usage
+        exit 1
+      fi
+      mon="$2"
+      shift 2
+      ;;
+    *)
+      if [[ $1 == -* ]]; then
+        echo "Error: Unrecognized option '$1'"
+        usage
+        exit 1
+      fi
+      ;;
+  esac
+done
 
-# if xrandr | grep "$extern disconnected"; then
-#   xrandr --output "$extern" --off
-#   # xrandr --output "$extern" --off --output "$intern" --auto --mode 1440x900
-# else
-#   xrandr --output "$intern" --off --output "$extern" --auto
-#   # xrandr --output "$extern" --auto --right-of "$intern"
-# fi
 
+mon_external() {
+  state=$1
+  flags=$2
+
+  if [ $state == "on" ]; then
+    xrandr --output $external --mode $external_res --rate $external_rate $flags --primary
+  elif [ $state == "off" ]; then
+    xrandr --output $external --off
+  fi
+}
+
+mon_internal() {
+  state=$1
+  flags=$2
+
+  if [ $state == "on" ]; then
+    xrandr --output $internal --mode $internal_res --rate $internal_rate $flags --primary
+  elif [ $state == "off" ]; then
+    xrandr --output $internal --off
+  fi
+}
+
+if [ $mon == "hdmi" ]; then
+  mon_external on "--rotate normal"
+  mon_internal off
+elif [ $mon == "hdmi-v" ]; then
+  mon_external on "--rotate right"
+  mon_internal off
+elif [ $mon == "laptop" ]; then
+  mon_internal on
+  mon_external off
+elif [ $mon == "both" ]; then
+  xrandr\
+  --output $internal --mode $internal_res --primary --rate $internal_rate\
+  --output $external --mode $external_res --rate $external_rate --above $internal --rotate normal
+elif [ $mon == "both-hdmi-v-r" ]; then
+  xrandr\
+  --output $internal --mode $internal_res --primary --rate $internal_rate\
+  --output $external --mode $external_res --rate $external_rate --right-of $internal --rotate right
+elif [ $mon == "both-hdmi-v-l" ]; then
+  xrandr\
+  --output $internal --mode $internal_res --primary --rate $internal_rate\
+  --output $external --mode $external_res --rate $external_rate --left-of $internal --rotate right --dpi 141.21
+else
+  echo "Invalid monitor value \"${mon}\""
+  exit 2
+fi
+
+# reload xprofile
+~/.xprofile
+
+# xwallpaper --output $internal --zoom $internal_bg --output $external --zoom $external_bg
+
+# kill all init programs that need to be restarted
+pkill xfce4-panel
+
+# reload wm
 # TODO: extract into `wm_control realod`
-# herbstclient reload
+herbstclient reload
+
+# TODO: take screen DPI change into account if needed
+# --dpi 133

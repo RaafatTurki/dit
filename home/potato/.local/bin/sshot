@@ -118,8 +118,8 @@ if $file; then
 fi
 
 if $clip; then
-  cat $cache_path | xclip -selection clip -t image/png
-  cat $cache_path | xclip -t image/png
+  cat $cache_path | nohup xclip -selection clip -t image/png
+  cat $cache_path | nohup xclip -t image/png
 fi
 
 decode_data=
@@ -129,8 +129,8 @@ if $decode; then
   #   echo "no decode data found"
   # fi
   if $clip; then
-    echo $decode_data | xclip -selection clip
-    echo $decode_data | xclip
+    echo "$decode_data" | nohup xclip -selection clip
+    echo "$decode_data" | nohup xclip
   fi
 fi
 
@@ -141,8 +141,8 @@ if $ocr; then
     echo "no ocr data found"
   fi
   if $clip; then
-    echo $ocr_data | xclip -selection clip
-    echo $ocr_data | xclip
+    echo "$ocr_data" | nohup xclip -selection clip
+    echo "$ocr_data" | nohup xclip
   fi
 fi
 

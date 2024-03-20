@@ -9,6 +9,9 @@ Mod4 + e
 "thunar trash:///"
 Mod4 + KP_Enter
 
+"thunar trash:///"
+Mod4 + Delete
+
 "rofi -font "$(xgetres rofi.font_name) $(xgetres rofi.font_size)" -show drun"
 Mod4 + d
 
@@ -28,6 +31,8 @@ Mod4 + Shift + s
 Mod4 + Shift + Control + s
 "cpick"
 Mod4 + c
+"mon-switcher -m laptop"
+Mod4 + b
 
 "wm-control v+"
 Mod4 + KP_Add

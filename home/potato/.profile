@@ -15,8 +15,8 @@ PS1='\u \w | '
 # eval "$(starship init bash)"
 
 # finds binaries in $PATH
-fbin() {
-  echo `command -v $1`
+bin_path() {
+  command -v "$1"
 }
 
 append_path() {
@@ -27,63 +27,91 @@ prepend_path() {
   export PATH=$1:$PATH
 }
 
+append_manpath() {
+  export MANPATH=$MANPATH:$1
+}
+
+append_infopath() {
+  export INFOPATH=$INFOPATH:$1
+}
+
+export VK_DRIVER_FILES=/usr/share/vulkan/icd.d/nvidia_icd.json
+
 # fail safes
-export USER=${USER:-`whoami`}
+export USER=${USER:-$(whoami)}
 export HOME=${HOME:-"/home/$USER"}
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-"$HOME/.config"}
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:-"$HOME/.cache"}
 export XDG_DATA_HOME=${XDG_DATA_HOME:-"$HOME/.local/share"}
 export XDG_STATE_HOME=${XDG_STATE_HOME:-"$HOME/.local/state/"}
-append_path $HOME/.local/bin
+append_path "$HOME/.local/bin"
 # prepend_path $HOME/.local/bin_drop_ins/
 # prepend_path $HOME/.local/bin/
-append_path $HOME/.local/share/cargo/bin/
-append_path $HOME/.local/share/go/bin/
-append_path $HOME/.luarocks/bin/
+append_path "$HOME/.local/share/cargo/bin/"
+append_path "$HOME/.local/share/go/bin/"
+append_path "$HOME/.luarocks/bin/"
+append_path "$XDG_CONFIG_HOME/luarocks/bin/"
+append_path "$XDG_CONFIG_HOME/composer/vendor/bin/"
 # more xdg support
 export XDG_DATA_DIRS=/usr/local/share:/usr/share
 # export XDG_DATA_DIRS=/usr/local/share:/usr/share:~/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share
 
 # android
-# append_path $ANDROID_HOME/cmdline-tools/tools/bin
-# append_path $ANDROID_HOME/emulator
-# append_path $ANDROID_HOME/platform-tools
+export ANDROID_HOME="$HOME/.android/android-sdk"
+export ANDROID_SDK_ROOT="$HOME/.android/android-sdk"
+export ANDROID_NDK="$HOME/.android/android-ndk"
+
+append_path "$ANDROID_SDK_ROOT/emulator"
+append_path "$ANDROID_SDK_ROOT/platform-tools"
+# append_path "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin"
+
+#latex
+export TEXMFHOME="$XDG_DATA_HOME/texmf"
+export TEXMFVAR="$XDG_CACHE_HOME/texlive/texmf-var"
+export TEXMFCONFIG="$XDG_CONFIG_HOME/texlive/texmf-config"
+
+TEXLIVE="$XDG_DATA_HOME/texlive/2023/"
+append_path "$TEXLIVE/bin/x86_64-linux"
+append_manpath "$TEXLIVE/texmf-dist/doc/man"
+append_infopath "$TEXLIVE/texmf-dist/doc/info"
+
 
 # env
-export SHELL=`fbin bash`
+export SHELL=$(bin_path bash)
 # export TERM="xterm-256color"
 # export TERM="xst-256color"
-export AUR_HELPER=`fbin paru`
-# export TERM_SHELL=`fbin fish`
-export EDITOR=`fbin nvim`
+export AUR_HELPER=$(bin_path paru)
+# export TERM_SHELL=$(bin_path fish)
+export EDITOR=$(bin_path nvim)
+export SYSTEMD_EDITOR=$(bin_path nvim)
 export VISUAL=$EDITOR
-export LESSPAGER="`fbin less` -R -S -X -e"
-# export PAGER=`fbin nvim`
+export LESSPAGER="$(bin_path less) -R -S -X -e"
+# export PAGER=$(bin_path nvim)
 export PAGER="$LESSPAGER"
-export MANPAGER="`fbin nvim` +Man!"
-export PARU_PAGER="`fbin nvim` +Man!"
-# export GIT_PAGER="`fbin nvim` +AnsiEsc"
-# export GIT_PAGER=`fbin less`
-# export GIT_PAGER=`fbin less -r`
+export MANPAGER="$(bin_path nvim) +Man!"
+export PARU_PAGER="$(bin_path nvim) +Man!"
+# export GIT_PAGER="$(bin_path nvim) +AnsiEsc"
+# export GIT_PAGER=$(bin_path less)
+# export GIT_PAGER=$(bin_path less -r)
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 # export USERSHARES_DIR="/var/lib/samba/usershares"
 # export USERSHARES_GROUP="sambashare"
 
-export TERMINAL="env SHELL=fish `fbin st`"
-# export TERMINAL=`fbin kitty`
-export FM=`fbin thunar`
-export READER=`fbin zathura`
-export BROWSER=`fbin firefox`
-# export LAUNCHER="`fbin rofi` -show drun"
-# export LAUNCHER="`fbin jgmenu_run`"
-# export AUDIO_MIXER=`fbin pavucontrol`
-# export AUDIO_PLAYER=`fbin pragha`
-# export MUSIC_CLIENT="$TERMINAL -e `fbin ncmpcpp`"
-# export MUSIC_SERVER=`fbin mpd`
-export SCREENSHOT=`fbin cshot`
+export TERMINAL="env SHELL=fish $(bin_path st)"
+# export TERMINAL=$(bin_path kitty)
+export FM=$(bin_path thunar)
+export READER=$(bin_path zathura)
+export BROWSER=$(bin_path firefox)
+# export LAUNCHER="$(bin_path rofi) -show drun"
+# export LAUNCHER="$(bin_path jgmenu_run)"
+# export AUDIO_MIXER=$(bin_path pavucontrol)
+# export AUDIO_PLAYER=$(bin_path pragha)
+# export MUSIC_CLIENT="$TERMINAL -e $(bin_path ncmpcpp)"
+# export MUSIC_SERVER=$(bin_path mpd)
+export SCREENSHOT=$(bin_path cshot)
 # export SXHKD_SHELL=$SHELL
-export COLOR_PICKER=`fbin color-picker`
-# export SYSMON=`fbin btop`
+export COLOR_PICKER=$(bin_path color-picker)
+# export SYSMON=$(bin_path btop)
 
 # theming
 export XCURSOR_THEME=Breeze_Snow
@@ -130,12 +158,12 @@ export NPM_HOME=$XDG_DATA_HOME/npm
 export RUSTUP_HOME=$XDG_DATA_HOME/rustup
 export CARGO_HOME=$XDG_DATA_HOME/cargo
 export GOPATH=$XDG_DATA_HOME/go
-export ANDROID_HOME=/opt/android-sdk/
 export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/pythonrc
 export GRADLE_USER_HOME=$XDG_DATA_HOME/gradle
 export NUGET_PACKAGES="$XDG_CACHE_HOME"/NuGetPackages
 export OMNISHARPHOME="$XDG_CONFIG_HOME"/omnisharp
 export W3M_DIR="$XDG_DATA_HOME"/w3m
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/ripgrep/ripgreprc
 # export RUST_SRC_PATH=$RUSTUP_HOME/toolchains/nightly-$(uname -m)-unknown-linux-gnu/lib/rustlib/src/rust/src
 
 

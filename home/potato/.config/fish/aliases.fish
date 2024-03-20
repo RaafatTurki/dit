@@ -1,10 +1,11 @@
 # essential
-alias s="sudo"
-alias ss="sudo -E"
-alias x="chmod +x"
-alias aa="paru"
+alias s='sudo'
+alias se='sudo -E'
+alias x='chmod +x'
+alias aa='paru'
 alias gg='gitui'
-alias cb="xclip -selection clipboard"
+alias cb="xsel --input --clipboard"
+# alias cb="xclip -selection clipboard"
 alias neo="neofetch"
 
 alias jctl="journalctl -p 3 -xb --no-pager"
@@ -69,12 +70,15 @@ alias profc="$EDITOR ~/.profile"
 alias xprofc="$EDITOR ~/.xprofile"
 
 alias nvims='nvim -c "SessionLoad"'
+alias senvims='sudo -E nvim -c "SessionLoad"'
 
 alias nvimc="cd $XDG_CONFIG_HOME/nvim && nvims"
+alias sshc="cd $HOME/.ssh && nvims"
 alias gitc="cd $XDG_CONFIG_HOME/git && nvims"
 alias fishc="cd $XDG_CONFIG_HOME/fish && nvims"
 alias x11c="cd $XDG_CONFIG_HOME/x11/ && nvims"
 alias hlwmc="cd $XDG_CONFIG_HOME/herbstluftwm/ && nvims"
+alias tmuxc="cd $XDG_CONFIG_HOME/tmux/ && nvims"
 alias bins="cd ~/.local/bin && nvims"
 alias notes="cd ~/files/docs/notes && nvims"
 
@@ -114,12 +118,13 @@ alias find-and-clean-node-modules="find . -name 'node_modules' -type d -prune -p
 # alias pac-pkgbuild='paru -Qsq | fzf | xargs paru -Gp'
 alias pac-clean='sudo pacman -Rns (pacman -Qtdq)'
 alias pac-sort-mirrors="curl -s 'https://archlinux.org/mirrorlist/?country=TR&country=DE&use_mirror_status=on' | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -v -n 8 - > /etc/pacman.d/mirrorlist"
+# cat m | rankmirrors -v -p -r "community" -
 alias pac-diff='DIFFPROG="nvim -d $1" sudo -E pacdiff'
 alias pac-unlock='sudo rm /var/lib/pacman/db.lck'
 
 # launchers
-alias get-audio='youtube-dl --extract-audio -f bestaudio'
-alias get-video='youtube-dl -f bestvideo+bestaudio'
+alias get-audio='yt-dlp --extract-audio -f bestaudio'
+alias get-video='yt-dlp -f bestvideo+bestaudio'
 # alias get-video='youtube-dl -f best '
 # alias screen_key='screenkey -s small -p fixed -g 500x80+1420+1000 --opacity .5 --font Terminus --no-systray -t 0.5'
 # alias nv='devour neovide --multiGrid --disowned'

@@ -26,7 +26,7 @@ hc set frame_bg_transparent on
 hc set window_gap 4
 hc set window_border_active_color $(xgetres hlwm.foreground)
 hc set window_border_urgent_color $(xgetres hlwm.color11)
-hc set window_border_width 1
+# hc set window_border_width 1
 
 
 # misc
@@ -45,7 +45,7 @@ hc set auto_detect_monitors
 hc attr theme.reset 1
 # title
 # hc attr theme.title_align center
-hc attr theme.title_height 6 # font size + top padding
+hc attr theme.title_height 3 # font size + top padding
 hc attr theme.title_depth 0  # bottom padding
 hc attr theme.title_when multiple_tabs
 # borders
@@ -123,32 +123,70 @@ hc rule fixedsize floating=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on floatplacement=center
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_SPLASH' floatplacement=center
 hc rule class='zoom' floating=on
 hc rule class='kooha' floating=on
 hc rule class='simple_droidcam_client' floating=on
-hc rule class='adwaita-steam-gtk' floating=on
 hc rule class='Rustdesk' floating=on
 hc rule class='pentablet' floating=on
 hc rule windowrole='About' floating=on
 hc rule windowrole='Windscribe2' floating=on
-hc rule title='Pick a Font' floating=off
-hc rule title='Select Font' floating=off
+# hc rule title='Pick a Font' floating=off
+# hc rule title='Select Font' floating=off
 hc rule title='Properties' floating=off
 hc rule title='anydesk' floating=on floatplacement=none
+hc rule title='windowkill' floating=on
+# mullvad
+hc rule instance='mullvad vpn' focus=on
+# steam windows
+hc rule instance='steamwebhelper' floating=on floatplacement=center
+hc rule title='Steam' floating=off
+# hc rule title='Sign in to Steam' focus=on floatplacement=center
+# hc rule title='Launching...' floating=on floatplacement=center
+# hc rule title='Question' floating=on floatplacement=center
+
+# misc
+hc rule instance='lxpolkit' floating=on floatplacement=center
+hc rule instance='zenity' floating=on
+hc rule instance='arandr' floating=on floatplacement=center
+hc rule instance='xfce4-panel' floating=on floatplacement=center
+hc rule title='Discord Updater' focus=on floatplacement=center
 hc rule title='Event Tester' floating=on floatplacement=center
 
 
+
 # daemons
-launch_once xss-lock            xss-lock wm-xsecurelock
+launch_once xss-lock            xss-lock wm-xlock
 launch_once udiskie             udiskie -asm flat
-launch_once nm-applet           nm-applet
 launch_once parcellite          parcellite
 launch_once thunar              thunar --daemon
-launch_once polybar             polybar -r watari
+launch_once lxpolkit            lxpolkit
 launch_once blueman-applet      blueman-applet
 launch_once xfce4-notifyd       /usr/lib/xfce4/notifyd/xfce4-notifyd
 launch_once arch-audit-gtk      arch-audit-gtk
-# launch_once barrier             barriers -f --disable-crypto -c .config/barrier.conf
+
+# launch_once jellyfin            jellyfin --webdir=/usr/share/jellyfin-web/
+# launch_once syncthing           syncthing serve --no-browser --no-restart --logflags=0
+
+# launch_once snixembed           snixembed
+# launch_once iwgtk               iwgtk -i -N
+# launch_once networkd-notify     networkd-notify
+
+# launch_once redshift-gtk        redshift-gtk -r -l 33.33:44.40
+launch_once xfce4-panel         xfce4-panel
+# launch_once applet.py           system-config-printer-applet --debug
+launch_once canto-daemon        canto-daemon
+
+# launch_once cbatticon           cbatticon
+# launch_once mullvad-vpn         mullvad-vpn
+
+# launch_once barriers            barriers --disable-crypto -f -c ~/.config/barrier.conf
+# launch_once xfce4-power-manager xfce4-power-manager
+# launch_once input-leaps         input-leaps --disable-crypto -f -c ~/.config/barrier.conf
+# launch_once nm-applet           nm-applet
+# for mon in $(polybar --list-monitors | cut -d":" -f1); do
+#   MONITOR=$mon launch_once polybar             polybar -r watari
+# done
 
 
 # unlock, just to be sure

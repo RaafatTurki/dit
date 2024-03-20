@@ -3,7 +3,7 @@
 # home cleaning
 GARBAGE=(
 ~/.ICEauthority
-~/.android
+# ~/.android
 # ~/.anydesk
 # ~/.aspnet
 ~/.cinnamon
@@ -16,12 +16,12 @@ GARBAGE=(
 ~/.gnome
 ~/.gnupg
 ~/.gtkrc-2.0
-~/.icons
+# ~/.icons
 ~/.java
 ~/.lesshst
 ~/.mono
 ~/.npm
-# ~/.nuget
+~/.nuget
 # ~/.omnisharp
 ~/.pki
 ~/.pnpm-debug.log
