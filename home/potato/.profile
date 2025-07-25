@@ -1,18 +1,7 @@
 #!/usr/bin/env bash
 
-# function appendpath
-#     set PATH $PATH:$1
-# end
-
-# appendpath $HOME/bin
-
 # execute .bashrc if it exists
-# [[ -f ~/.bashrc ]] && . ~/.bashrc
-
-
-# prompt
-PS1='\u \w | '
-# eval "$(starship init bash)"
+[[ -f ~/.bashrc ]] && . ~/.bashrc
 
 # finds binaries in $PATH
 bin_path() {
@@ -45,76 +34,57 @@ export XDG_CACHE_HOME=${XDG_CACHE_HOME:-"$HOME/.cache"}
 export XDG_DATA_HOME=${XDG_DATA_HOME:-"$HOME/.local/share"}
 export XDG_STATE_HOME=${XDG_STATE_HOME:-"$HOME/.local/state/"}
 append_path "$HOME/.local/bin"
-# prepend_path $HOME/.local/bin_drop_ins/
-# prepend_path $HOME/.local/bin/
 append_path "$HOME/.local/share/cargo/bin/"
 append_path "$HOME/.local/share/go/bin/"
 append_path "$HOME/.luarocks/bin/"
 append_path "$XDG_CONFIG_HOME/luarocks/bin/"
 append_path "$XDG_CONFIG_HOME/composer/vendor/bin/"
+
 # more xdg support
 export XDG_DATA_DIRS=/usr/local/share:/usr/share
 # export XDG_DATA_DIRS=/usr/local/share:/usr/share:~/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share
 
 # android
-export ANDROID_HOME="$HOME/.android/android-sdk"
-export ANDROID_SDK_ROOT="$HOME/.android/android-sdk"
-export ANDROID_NDK="$HOME/.android/android-ndk"
+# export ANDROID_HOME="$HOME/.android/android-sdk"
+# export ANDROID_SDK_ROOT="$HOME/.android/android-sdk"
+# export ANDROID_NDK="$HOME/.android/android-ndk"
+# append_path "$ANDROID_SDK_ROOT/emulator"
+# append_path "$ANDROID_SDK_ROOT/platform-tools"
+# append_path "$HOME/.dotnet/tools"
 
-append_path "$ANDROID_SDK_ROOT/emulator"
-append_path "$ANDROID_SDK_ROOT/platform-tools"
-# append_path "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin"
+# pnpm
+# export PNPM_HOME="$XDG_DATA_HOME/pnpm"
+# append_path "$PNPM_HOME"
 
-#latex
-export TEXMFHOME="$XDG_DATA_HOME/texmf"
-export TEXMFVAR="$XDG_CACHE_HOME/texlive/texmf-var"
-export TEXMFCONFIG="$XDG_CONFIG_HOME/texlive/texmf-config"
+# bun
+append_path "$XDG_CACHE_HOME/.bun/bin"
 
-TEXLIVE="$XDG_DATA_HOME/texlive/2023/"
-append_path "$TEXLIVE/bin/x86_64-linux"
-append_manpath "$TEXLIVE/texmf-dist/doc/man"
-append_infopath "$TEXLIVE/texmf-dist/doc/info"
+# rofi scripts
+append_path "$XDG_CONFIG_HOME/rofi/scripts"
 
 
 # env
 export SHELL=$(bin_path bash)
-# export TERM="xterm-256color"
-# export TERM="xst-256color"
 export AUR_HELPER=$(bin_path paru)
-# export TERM_SHELL=$(bin_path fish)
 export EDITOR=$(bin_path nvim)
 export SYSTEMD_EDITOR=$(bin_path nvim)
 export VISUAL=$EDITOR
 export LESSPAGER="$(bin_path less) -R -S -X -e"
-# export PAGER=$(bin_path nvim)
 export PAGER="$LESSPAGER"
 export MANPAGER="$(bin_path nvim) +Man!"
 export PARU_PAGER="$(bin_path nvim) +Man!"
-# export GIT_PAGER="$(bin_path nvim) +AnsiEsc"
-# export GIT_PAGER=$(bin_path less)
-# export GIT_PAGER=$(bin_path less -r)
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
-# export USERSHARES_DIR="/var/lib/samba/usershares"
-# export USERSHARES_GROUP="sambashare"
 
-export TERMINAL="env SHELL=fish $(bin_path st)"
-# export TERMINAL=$(bin_path kitty)
-export FM=$(bin_path thunar)
+export TERMINAL=$(bin_path st)
+export TERMINAL_SHELL=$(bin_path fish) # NOTE: CUSTOM
+export FM=$(bin_path nemo)
 export READER=$(bin_path zathura)
-export BROWSER=$(bin_path firefox)
-# export LAUNCHER="$(bin_path rofi) -show drun"
-# export LAUNCHER="$(bin_path jgmenu_run)"
-# export AUDIO_MIXER=$(bin_path pavucontrol)
-# export AUDIO_PLAYER=$(bin_path pragha)
-# export MUSIC_CLIENT="$TERMINAL -e $(bin_path ncmpcpp)"
-# export MUSIC_SERVER=$(bin_path mpd)
+export BROWSER=$(bin_path zen-browser)
 export SCREENSHOT=$(bin_path cshot)
-# export SXHKD_SHELL=$SHELL
 export COLOR_PICKER=$(bin_path color-picker)
-# export SYSMON=$(bin_path btop)
 
 # theming
-export XCURSOR_THEME=Breeze_Snow
+export XCURSOR_THEME=Yaru
 # export GTK_THEME=Adwaita:dark
 # export QT_STYLE_OVERRIDE=adwaita-dark
 
@@ -131,6 +101,9 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 # java
 export _JAVA_AWT_WM_NONREPARENTING=1
+
+# nemo
+export GNOME22_USER_DIR="$HOME/.config/nemo"
 
 # lua
 export LUA_PATH='/usr/share/lua/5.4/?.lua;/usr/share/lua/5.4/?/init.lua;/usr/lib/lua/5.4/?.lua;/usr/lib/lua/5.4/?/init.lua;./?.lua;./?/init.lua;/home/potato/.luarocks/share/lua/5.4/?.lua;/home/potato/.luarocks/share/lua/5.4/?/init.lua'
@@ -166,6 +139,8 @@ export W3M_DIR="$XDG_DATA_HOME"/w3m
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME"/ripgrep/ripgreprc
 # export RUST_SRC_PATH=$RUSTUP_HOME/toolchains/nightly-$(uname -m)-unknown-linux-gnu/lib/rustlib/src/rust/src
 
+export GSK_RENDERER=gl
+export GDK_DEBUG=gl-no-fractional
 
 # activate gtk3 no csd if available
 GTK3_NO_CSD_SO=/usr/lib/libgtk3-nocsd.so.0
@@ -177,13 +152,12 @@ fi
 # eliminate the staircase effect
 stty onlcr
 
-# Autostart tbsm on tty 1
-# if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-# if [ "${XDG_VTNR}" -eq 1 ]; then
-#   # no exec because we want to keep the tty console alive
-#   xinit
-# else
-#   # setfont /usr/share/kbd/consolefonts/ter-v18n.psf.gz
-#   clear
-#   exec fish -C 'logo'
-# fi
+# xinit on tty 1 and dennis on others
+if [ "${XDG_VTNR}" -eq 1 ]; then
+  # no exec because we want to keep the tty console alive
+  xinit
+else
+  # setfont /usr/share/kbd/consolefonts/ter-v18n.psf.gz
+  clear
+  exec fish -C 'dennis'
+fi

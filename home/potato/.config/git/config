@@ -3,49 +3,67 @@
 [user]
   name = Raafat Turki
   email = raafat.turki@proton.me
+  signingkey = ~/.ssh/id_ed25519.pub
 
 [core]
   excludesFile = ~/.config/git/.gitignore
-  # autocrlf = input
-  # excludesfile = /home/potato/.config/git/gitignore_global
-  # pager = diff-so-fancy | less --tabs=4 -RFX
-  # pager = diff-so-fancy | less --tabs=2 -RFX
-  # pager = difft
-  # pager = diff-so-fancy
-  # pager = diff-so-fancy | less --tabs=4 -RFX
 
 [init]
-  defaultBranch = master
+	defaultBranch = master
 
 [pull]
   ff = only
 
-# [merge]
-# 	tool = vimdiff
-# 	conflictstyle = diff3
-
-# [mergetool]
-#   keepBackup = false
-#   prompt = false
-
-# [mergetool "vimdiff"]
-#   cmd = "nvim  -d $LOCAL $REMOTE"
-
 [alias]
-  glog = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-  last = log -1 HEAD --stat
-  stat = status -sb
-  comm = commit -m
-  conf = config --global -l
-  # update = fetch --dry-run
-  # rv = remote -v
-  # d = diff
-  # dv = difftool -t vimdiff -y
-  # cloner = clone --recursive
-  # dft = difftool
-  # se = !git rev-list --all | xargs git grep -F
-  # conv-ssh = remote set-url origin git@github.com:RaafatTurki/
+  glog = log --all --decorate --graph --oneline --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+  # staash = stash --all
+  # st = status -sb
+  # last = log -1 HEAD --stat
+  # lscfg = config --global -l
 
 [advice]
   addEmptyPathspec = false
   statusHints = false
+
+
+# [diff]
+#   external = difft
+#   tool = difftastic
+
+# [difftool]
+#   prompt = false
+
+# [difftool "difftastic"]
+#   cmd = difft "$LOCAL" "$REMOTE"
+
+# [pager]
+#   difftool = true
+
+# [safe]
+#   directory = /opt/flutter
+
+# git fetch origin
+# git reset --hard origin/master
+# git clean -fdx
+
+# auto merge conflicts if encountered more than once
+[rerere]
+  enabled = true
+
+[column]
+  ui = auto
+
+[branch]
+  sort = -committerdate
+
+# sign stuff w SSH
+[gpg]
+  format = ssh
+
+# github PRs as refs (checkout-able branches)
+[remote "origin"]
+  fetch = +refs/pull/*:refs/remotes/origin/pull/*
+
+# detect copies as well as renames
+[diff]
+  renames = copies

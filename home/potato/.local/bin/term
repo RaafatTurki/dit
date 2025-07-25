@@ -1,8 +1,17 @@
 #!/usr/bin/bash
 
 launch() {
-  TERM_SHELL=${TERM_SHELL:-bash}
-  exec env SHELL=$TERM_SHELL $TERMINAL "$@"
+  for terminal in $(basename $TERMINAL) x-terminal-emulator urxvt rxvt terminology qterminal Eterm aterm uxterm xterm roxterm xfce4-terminal mate-terminal lxterminal konsole alacritty kitty; do
+    if command -v $terminal >/dev/null 2>&1; then
+      if [ "$terminal" = $(basename "$0") ]; then
+        echo "\$TERMINAL is set to \"$TERMINAL\" which is a terminal finder script, please set \$TERMINAL to something else"
+        continue
+      else
+        TERMINAL_SHELL=${TERMINAL_SHELL:-sh}
+        exec env SHELL=$TERMINAL_SHELL $TERMINAL "$@"
+      fi
+    fi
+  done
 }
 
 zoom() {

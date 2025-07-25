@@ -1,34 +1,34 @@
-gui:
-  sidePanelWidth: 0.5
-  expandFocusedSidePanel: true
-  theme:
-    lightTheme: false
-    activeBorderColor:
-      - white
-      - bold
-    inactiveBorderColor:
-      - '#294374'
-    optionsTextColor:
-      - blue
-    selectedLineBgColor:
-      - default
-    selectedRangeBgColor:
-      - blue
-    cherryPickedCommitBgColor:
-      - blue
-    cherryPickedCommitFgColor:
-      - cyan
-  commitLength:
-    show: true
-  showFileTree: true
-  showRandomTip: false
-  showCommandLog: false
-  authorColors: # in case you're not happy with the randomly assigned colour
-    'Raafat Turki': '#294374'
-git:
-  paging:
-    colorArg: always
-    pager: diff-so-fancy
+# gui:
+#   sidePanelWidth: 0.5
+#   expandFocusedSidePanel: true
+#   theme:
+#     lightTheme: false
+#     activeBorderColor:
+#       - white
+#       - bold
+#     inactiveBorderColor:
+#       - '#294374'
+#     optionsTextColor:
+#       - blue
+#     selectedLineBgColor:
+#       - default
+#     selectedRangeBgColor:
+#       - blue
+#     cherryPickedCommitBgColor:
+#       - blue
+#     cherryPickedCommitFgColor:
+#       - cyan
+#   commitLength:
+#     show: true
+#   showFileTree: true
+#   showRandomTip: false
+#   showCommandLog: false
+#   authorColors: # in case you're not happy with the randomly assigned colour
+#     'Raafat Turki': '#294374'
+# git:
+#   paging:
+#     colorArg: always
+#     pager: diff-so-fancy
     # externalDiffCommand: difft --color=always --display=inline --syntax-highlight=off
 
 # git:

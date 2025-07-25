@@ -3,7 +3,8 @@ vim: filetype=css
 */
 
 configuration {
-modi: "drun,window,run,ssh";
+modi: "drun,MONITORS:rofi-monitors,POWER:rofi-power,window,run,ssh";
+/* modi: "drun,MONITORS:rofi-monitors,POWER:rofi-power"; */
 /* modi: "drun"; */
 /* font: "FiraCode Nerd Font 14"; */
 location: 0;
@@ -11,7 +12,7 @@ yoffset: 0;
 xoffset: 0;
 /* fixed-num-lines: true; */
 show-icons: true;
-terminal: "rofi-sensible-terminal";
+terminal: "term";
 /* ssh-client: "ssh"; */
 /* ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]"; */
 /* run-command: "{cmd}"; */
@@ -19,7 +20,7 @@ terminal: "rofi-sensible-terminal";
 /* run-shell-command: "{terminal} -e {cmd}"; */
 /* window-command: "wmctrl -i -R {window}"; */
 /* window-match-fields: "all"; */
-/* icon-theme: ; */
+icon-theme: "breeze-dark";
 /* drun-match-fields: "name,generic,exec,categories,keywords"; */
 /* drun-categories: ; */
 /* drun-show-actions: false; */
@@ -64,6 +65,7 @@ display-window: "GO ";
 display-run: "EXEC ";
 display-ssh: "SSH ";
 display-drun: "RUN ";
+/* display-emoji: "EMOJIS "; */
 /* display-combi: ; */
 /* display-keys: ; */
 /* display-filebrowser: ; */

@@ -147,7 +147,7 @@ if $ocr; then
 fi
 
 if $notify; then
-  convert ${cache_path} -resize 48x48 ${cache_path}
+  magick ${cache_path} -resize 48x48 ${cache_path}
   notify-send -i ${cache_path} "$title" "OCR: $ocr_data\nDEC: $decode_data"
 fi
 

@@ -31,6 +31,12 @@ function javav
     case 19
       sudo archlinux-java set java-19-openjdk
       title 'Java version 19 set'
+    case 21
+      sudo archlinux-java set java-21-openjdk
+      title 'Java version 21 set'
+    case 24
+      sudo archlinux-java set java-24-openjdk
+      title 'Java version 21 set'
     case '*'
       error 'Java version unsupported'
   end

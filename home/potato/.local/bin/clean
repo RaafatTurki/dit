@@ -3,29 +3,27 @@
 # home cleaning
 GARBAGE=(
 ~/.ICEauthority
-# ~/.android
-# ~/.anydesk
-# ~/.aspnet
 ~/.cinnamon
 ~/.dart
 ~/.dartServer
 ~/.degit
-# ~/.dotnet
 ~/.eclipse
 ~/.flutter
 ~/.gnome
 ~/.gnupg
+~/.gscriptor
 ~/.gtkrc-2.0
-# ~/.icons
+~/.iredis_history
 ~/.java
 ~/.lesshst
+~/.mariadb_history
 ~/.mono
 ~/.npm
 ~/.nuget
-# ~/.omnisharp
 ~/.pki
 ~/.pnpm-debug.log
 ~/.pnpm-store
+~/.psql_history
 ~/.pulse-cookie
 ~/.python_history
 ~/.stack
@@ -35,18 +33,15 @@ GARBAGE=(
 ~/.swt
 ~/.synergy
 ~/.tig_history
+~/.ts_node_repl_history
 ~/.urserver
 ~/.viminfo
 ~/.wget-hsts
-# ~/.wine
 ~/.yarn
 ~/.yarnrc
 ~/.zoom
 ~/unity.lock
 ~/yarn.lock
-# ~/.cache
-# ~/.thumbnails
-# ~/.icons
 
 # wine
 $XDG_DATA_HOME/applications/wine*

@@ -23,8 +23,8 @@ sudo pacman -Su --disable-download-timeout
 
 if command -v paru >/dev/null; then
   title "Updating Unofficial Packages (paru)"
-  paru --gendb  # make paru aware of all -git packages upstream updates if not installed by it
-  paru -Su --disable-download-timeout
+  # paru --gendb  # make paru aware of all -git packages upstream updates if not installed by it
+  paru -Suu --disable-download-timeout
 elif command -v aura >/dev/null; then
   title "Updating Unofficial Packages (aura)"
   sudo aura -Akuax
@@ -41,6 +41,11 @@ if command -v pkgfile >/dev/null; then
   sudo pkgfile -u
 fi
 
+if command -v freshclam >/dev/null; then
+  title "Updating ClamAV Malware Signatures"
+  sudo freshclam --show-progress
+fi
+
 if sudo bootctl is-installed >/dev/null; then
   title "Updating SystemD Boot"
   sudo bootctl update
@@ -55,7 +60,7 @@ if sudo bootctl is-installed >/dev/null; then
 fi
 
 title "Updating Fish Completions"
-fish_update_completions
+fish -c fish_update_completions
 
 # title "Rebuilding Font Cache Files"
 # fc-cache -frv
@@ -65,3 +70,8 @@ systemctl --failed
 
 title "Check For .pacnew/.pacsave Files"
 find /etc -regextype posix-extended -regex ".+\.pac(new|save)" 2>/dev/null
+
+if command -v freshclam >/dev/null; then
+  title "Check For outdated processes"
+  sudo needrestart
+fi

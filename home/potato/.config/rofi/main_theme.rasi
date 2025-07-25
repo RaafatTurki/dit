@@ -2,23 +2,23 @@
 version: 1.7.0 */
 
 * {
-  bg:		#000000;
-  mg:		#0A151F;
-  fg:		#294374;
-  sel:	#FEFFFF;
-  tr:		#00000000;
+  bg:   #080808;
+  mg:   #292929;
+  sep:  #292929;
+  fg:   #F1F7ED;
+  sel:  #3A8EE6;
+  tr:   #00000000;
 
   background-color:  @tr;
-  text-color:  @sel;
+  text-color:  @fg;
 }
 window {
   height:		80%;
   width:		30%;
   location:	center;
   anchor:		center;
-  /* border: 1px; */
-  border: 0px;
-  border-color: @mg;
+  border:   1px;
+  border-color: @sep;
 }
 mode-switcher {}
 button {
@@ -47,10 +47,12 @@ element-text {
   text-color: @fg;
 }
 element-icon {
-  size: 28px;
+  size: 24px;
   padding: 0px 10px 0px 0px;
 }
-element selected {}
+element selected {
+  background-color: @mg;
+}
 element-text selected {
-  text-color: @sel;
+  /* text-color: @sel; */
 }

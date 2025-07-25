@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-internal=eDP-1
-external=HDMI-1-0
+edps=eDP-1
+hdmi=HDMI-1-0
+usbc=DP-1
 
-internal_res=1920x1080
-external_res=2560x1440
-
-internal_rate=120
-external_rate=120
+res_md=1024x600
+res_hd=1920x1080
+res_2k=2560x1440
+# res_4k=3840x2160
 
 # internal_bg=~/files/pics/wallpapers/punpun_dim.png
 # external_bg=~/files/pics/wallpapers/berserk_skull.jpg
@@ -47,49 +47,36 @@ while [[ $# -gt 0 ]]; do
 done
 
 
-mon_external() {
-  state=$1
-  flags=$2
-
-  if [ $state == "on" ]; then
-    xrandr --output $external --mode $external_res --rate $external_rate $flags --primary
-  elif [ $state == "off" ]; then
-    xrandr --output $external --off
-  fi
-}
-
-mon_internal() {
-  state=$1
-  flags=$2
-
-  if [ $state == "on" ]; then
-    xrandr --output $internal --mode $internal_res --rate $internal_rate $flags --primary
-  elif [ $state == "off" ]; then
-    xrandr --output $internal --off
-  fi
-}
-
-if [ $mon == "hdmi" ]; then
-  mon_external on "--rotate normal"
-  mon_internal off
-elif [ $mon == "hdmi-v" ]; then
-  mon_external on "--rotate right"
-  mon_internal off
-elif [ $mon == "laptop" ]; then
-  mon_internal on
-  mon_external off
-elif [ $mon == "both" ]; then
-  xrandr\
-  --output $internal --mode $internal_res --primary --rate $internal_rate\
-  --output $external --mode $external_res --rate $external_rate --above $internal --rotate normal
-elif [ $mon == "both-hdmi-v-r" ]; then
-  xrandr\
-  --output $internal --mode $internal_res --primary --rate $internal_rate\
-  --output $external --mode $external_res --rate $external_rate --right-of $internal --rotate right
-elif [ $mon == "both-hdmi-v-l" ]; then
-  xrandr\
-  --output $internal --mode $internal_res --primary --rate $internal_rate\
-  --output $external --mode $external_res --rate $external_rate --left-of $internal --rotate right --dpi 141.21
+if [ $mon == "laptop" ]; then
+  xrandr \
+  --output $edps --mode $res_hd --rate 120 --primary \
+  --output $hdmi --off \
+  --output $usbc --off
+elif [ $mon == "2k" ]; then
+  xrandr \
+  --output $hdmi --mode $res_2k --rate 120 --primary \
+  --output $usbc --off \
+  --output $edps --off
+elif [ $mon == "2k-144" ]; then
+  xrandr \
+  --output $hdmi --mode $res_2k --rate 144 --primary \
+  --output $usbc --off \
+  --output $edps --off
+elif [ $mon == "hd" ]; then
+  xrandr \
+  --output $hdmi --mode $res_hd --rate 120 --primary \
+  --output $usbc --off \
+  --output $edps --off
+elif [ $mon == "same" ]; then
+  xrandr \
+  --output $edps --mode $res_hd --rate 120 \
+  --output $hdmi --mode $res_hd --rate 120 --primary --same-as $edps \
+  --output $usbc --off
+elif [ $mon == "work" ]; then
+  xrandr \
+  --output $edps --mode $res_hd --rate 120 \
+  --output $hdmi --mode $res_2k --rate 120 --primary --left-of $edps \
+  --output $usbc --off
 else
   echo "Invalid monitor value \"${mon}\""
   exit 2

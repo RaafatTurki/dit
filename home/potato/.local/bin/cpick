@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/usr/bin/env bash
 
 # DEPS: gpick, imagemagick (WIP)
 
@@ -12,17 +12,17 @@ sound_beep() {
 }
 
 main() {
-	if [[ "$color" ]]; then
-        	# copy color code to clipboard
-		echo $color | tr -d "\n" | xclip -selection clipboard
-		# generate preview
-		convert -size 48x48 xc:"$color" ${image}
-		# notify about it
+  if [[ "$color" ]]; then
+    # copy color code to clipboard
+    echo $color | tr -d "\n" |  tr -d "#" |xclip -selection clipboard
+    # generate preview
+    convert -size 48x48 xc:"$color" ${image}
+    # notify about it
     # dunstify -u low --replace=69 -i ${image} "$color, copied to clipboard."
-		notify-send -u low -a "color picker" -r 69 -i ${image} "$color"
-		# notify-send -u low "Picked $color"
+    notify-send -u low -a "color picker" -r 69 -i ${image} "$color"
+    # notify-send -u low "Picked $color"
     sound_beep
-	fi
+  fi
 }
 
 # Run the script

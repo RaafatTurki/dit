@@ -5,7 +5,9 @@ display() {
   shift
   message=$@
 
-  umess-send $sleep_duration $message
+  # umess-send $sleep_duration $message
+  # use notify-send instead of umess-send
+  notify-send -t $((sleep_duration * 1000)) -r 43 "$message"
 }
 
 display-volume() {
@@ -21,10 +23,7 @@ display-volume() {
 
 case $1 in
   time)
-    display 1 $(date '+%a %d %b %I:%M:%S %p')
-    ;;
-  bat)
-    display 1 $(acpi)
+    display 1 $(date '+%a %d %b %I:%M %p') - $(cat /sys/class/power_supply/BAT1/capacity)% $(cat /sys/class/power_supply/BAT1/status)
     ;;
   b+)
     wm-backlight change 10%+
@@ -35,11 +34,11 @@ case $1 in
     display 1 󰃠 $(wm-backlight get)%
     ;;
   v+)
-    pamixer -i 5 --allow-boost --set-limit 500
+    pamixer -i 5 --allow-boost --set-limit 200
     display-volume
     ;;
   v-)
-    pamixer -d 5 --allow-boost --set-limit 500
+    pamixer -d 5 --allow-boost --set-limit 200
     display-volume
     ;;
   mute)

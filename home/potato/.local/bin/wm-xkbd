@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-layouts=("us" "tr(alt)" "ara" "us(dvorak)")
+# layouts=("us" "tr(alt)" "ara" "us(dvorak)")
+layouts=("us" "ara")
 
 # get the current layout from the environment variable
 current_layout=$(setxkbmap -query | grep layout | awk '{print $2}')

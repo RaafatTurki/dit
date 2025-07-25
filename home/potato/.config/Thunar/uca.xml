@@ -23,4 +23,15 @@
 	<patterns>*.iso;*.ISO</patterns>
 	<other-files/>
 </action>
+<action>
+	<icon>folder-saved-search</icon>
+	<name>Search files in folder</name>
+	<submenu></submenu>
+	<unique-id>1702498318196855-1</unique-id>
+	<command>catfish %f</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
+</action>
 </actions>

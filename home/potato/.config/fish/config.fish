@@ -13,6 +13,14 @@ if status is-interactive
 
   source ~/.config/fish/aliases.fish
 
+  if test (command -v upterm)
+    # upterm completion fish
+  end
+
+  if test (command -v dotnet)
+    complete -f -c dotnet -a "(dotnet complete (commandline -cp))"
+  end
+
   # pip fish completion start
   # function __fish_complete_pip
   #   set -lx COMP_WORDS (commandline -o) ""
@@ -40,24 +48,22 @@ if status is-interactive
   # completions that shouldn't be here
   # complete -f -c win -a (find . -name *.exe -type f -printf '%P\n')
 
-  # if test (command -v step-cli)
-  #   step-cli completion fish
+  if test (command -v step-cli)
+    step-cli completion fish
+  end
+
+  # doesn't work (maybe needs sourcing)
+  # if test (command -v oauth2c)
+  #   oauth2c completion fish
   # end
 
-  # if test (command -v luarocks)
-  #   luarocks completion fish
-  # end
+  #if test (command -v luarocks)
+  #  luarocks completion fish
+  #end
 
-
-
-  complete -c sshot -f
-  complete -c sshot -a 'clip' -d 'Take a screenshot and save it into clipboard'
-  complete -c sshot -a 'save' -d 'Take a screenshot and save into ~/Pictures/screenshots'
-  complete -c sshot -a 'decode' -d 'Take a screenshot and save its decoded content into clipboard (qrcodes and barcodes)'
-  complete -c sshot -a 'help' -d 'Print a short help text and exit'
+  # complete -c sshot -f
+  # complete -c sshot -a 'clip' -d 'Take a screenshot and save it into clipboard'
+  # complete -c sshot -a 'save' -d 'Take a screenshot and save into ~/Pictures/screenshots'
+  # complete -c sshot -a 'decode' -d 'Take a screenshot and save its decoded content into clipboard (qrcodes and barcodes)'
+  # complete -c sshot -a 'help' -d 'Print a short help text and exit'
 end
-
-# pnpm
-set -gx PNPM_HOME "/home/potato/.local/share/pnpm"
-set -gx PATH "$PNPM_HOME" $PATH
-# pnpm end

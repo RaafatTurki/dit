@@ -2,10 +2,12 @@
 
 
 ! standard terminal colors
-#define BG                #07080F
+! #define BG                #07080F
+#define BG                #080808
 #define FG                #F1F7ED
 ! mg
-#define COLOR0            #252550
+! #define COLOR0            #252550
+#define COLOR0            #292929
 #define COLOR8            #353570
 #define COLOR1            #D7263D
 ! err

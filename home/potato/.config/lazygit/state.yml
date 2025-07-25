@@ -1,11 +1,16 @@
 lastupdatecheck: 0
 recentrepos:
-- /home/potato/.config/nvim
-- /home/potato/work/Tamweeniya-API
-- /home/potato/sectors/nvim/hex.nvim
-- /home/potato/.local/share/nvim/lazy/nvim-treesitter
-- /home/potato/.local/share/nvim/lazy/gitsigns.nvim
+    - /home/potato/work/tam/tam-api
+    - /home/potato/.config/nvim
+    - /home/potato/sectors/nvim/hex.nvim
 startuppopupversion: 5
+lastversion: 0.50.0
 customcommandshistory: []
 hidecommandlog: false
 ignorewhitespaceindiffview: false
+diffcontextsize: 3
+renamesimilaritythreshold: 50
+localbranchsortorder: recency
+remotebranchsortorder: alphabetical
+gitlogorder: topo-order
+gitlogshowgraph: always

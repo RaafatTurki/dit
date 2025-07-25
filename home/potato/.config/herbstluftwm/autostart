@@ -36,6 +36,7 @@ hc set tree_style '╾│ ├└╼─┐'
 hc set focus_stealing_prevention off
 hc set focus_follows_mouse on
 hc set auto_detect_monitors
+hc set swap_monitors_to_get_tag on
 # hc set_monitors 1920x1080+0+0 1366x768+1920+0
 # hc set hide_covered_windows on
 # hc set frame_transparent_width 1
@@ -65,7 +66,7 @@ Mod=Super
 hc keyunbind --all
 hc keybind $Mod-Shift-r reload
 hc keybind $Mod-q close
-hc keybind $Mod-backslash spawn scratchpad.hlwm 5
+hc keybind $Mod-backslash spawn scratchpad.hlwm 7
 # basic movement in tiling and floating mode
 hc keybind $Mod-Left  focus left
 hc keybind $Mod-Down  focus down
@@ -89,8 +90,8 @@ hc keybind $Mod-space or , and . compare tags.focus.curframe_wcount = 2 . cycle_
 
 
 # tags
-tag_names=( 1 2 3 4 5 )
-tag_keys=( 1 2 3 4 5 )
+tag_names=( 1 2 3 4 5 6 7 )
+tag_keys=( 1 2 3 4 5 6 7 )
 hc rename default "${tag_names[0]}" || true
 # hc rename default 1
 for i in "${!tag_names[@]}" ; do
@@ -129,6 +130,8 @@ hc rule class='kooha' floating=on
 hc rule class='simple_droidcam_client' floating=on
 hc rule class='Rustdesk' floating=on
 hc rule class='pentablet' floating=on
+
+# hc rule class='telegram-desktop' floating=on
 hc rule windowrole='About' floating=on
 hc rule windowrole='Windscribe2' floating=on
 # hc rule title='Pick a Font' floating=off
@@ -137,39 +140,66 @@ hc rule title='Properties' floating=off
 hc rule title='anydesk' floating=on floatplacement=none
 hc rule title='windowkill' floating=on
 # mullvad
-hc rule instance='mullvad vpn' focus=on
 # steam windows
+hc rule instance='mullvad vpn' floating=on floatplacement=center
 hc rule instance='steamwebhelper' floating=on floatplacement=center
-hc rule title='Steam' floating=off
+hc rule instance='1password' floating=on floatplacement=center
+hc rule title='Steam' floating=on floatplacement=center
 # hc rule title='Sign in to Steam' focus=on floatplacement=center
 # hc rule title='Launching...' floating=on floatplacement=center
 # hc rule title='Question' floating=on floatplacement=center
+hc rule title='WebStorm User Agreement' floating=on floatplacement=center
+hc rule title='Import Android Studio Settings' floating=on floatplacement=center
+hc rule title='Android Studio Setup Wizard' floating=on floatplacement=center
+hc rule title=' ' floating=on floatplacement=center
+hc rule title='Welcome to Android Studio' floating=on floatplacement=center
+hc rule title~'^Android Emulator' floating=on floatplacement=center
+hc rule instance='ghidra-Ghidra' floating=on floatplacement=center
+hc rule class='C.A.T.' floating=on floatplacement=center
+hc rule title='vesktop' floating=on floatplacement=center
 
 # misc
 hc rule instance='lxpolkit' floating=on floatplacement=center
 hc rule instance='zenity' floating=on
 hc rule instance='arandr' floating=on floatplacement=center
 hc rule instance='xfce4-panel' floating=on floatplacement=center
+hc rule title='Wireless network credentials' floating=on floatplacement=center
 hc rule title='Discord Updater' focus=on floatplacement=center
 hc rule title='Event Tester' floating=on floatplacement=center
 
+hc rule class='my_qml_app' floating=on floatplacement=center
 
 
 # daemons
+launch_once picom               picom
 launch_once xss-lock            xss-lock wm-xlock
 launch_once udiskie             udiskie -asm flat
 launch_once parcellite          parcellite
 launch_once thunar              thunar --daemon
-launch_once lxpolkit            lxpolkit
 launch_once blueman-applet      blueman-applet
+# launch_once blueberry-tray      blueberry-tray
 launch_once xfce4-notifyd       /usr/lib/xfce4/notifyd/xfce4-notifyd
+launch_once xfce4-power-manager xfce4-power-manager
 launch_once arch-audit-gtk      arch-audit-gtk
+# launch_once xwallpaper          xwallpaper --maximize ~/files/pics/wallpapers/berserk_skull.png
+# launch_once xwallpaper          xwallpaper --daemon --maximize ~/files/pics/wallpapers/scavengers-1.jpg
+# launch_once xwallpaper          xwallpaper --daemon --maximize ~/files/pics/wallpapers/berserk_skull.png
+launch_once xwallpaper          xwallpaper --daemon --maximize ~/files/pics/wallpapers/vagabond.png
+launch_once gpu-state-tray      ~/sectors/rust/gpu-state-tray/target/debug/gpu-state-tray
+# launch_once stremio-service     stremio-service
+# launch_once 1password           1password --silent
+# launch_once nemo-desktop        nemo-desktop
+
+# launch_once autorandr-launc     autorandr-launcher --verbose
+# launch_once vdu_controls        vdu_controls --system-tray --no-weather --no-splash --no-schedule --hide color-temperature
 
 # launch_once jellyfin            jellyfin --webdir=/usr/share/jellyfin-web/
 # launch_once syncthing           syncthing serve --no-browser --no-restart --logflags=0
 
 # launch_once snixembed           snixembed
 # launch_once iwgtk               iwgtk -i -N
+launch_once nm-applet           nm-applet --indicator
+# launch_once nm-applet           nm-applet
 # launch_once networkd-notify     networkd-notify
 
 # launch_once redshift-gtk        redshift-gtk -r -l 33.33:44.40
@@ -188,10 +218,8 @@ launch_once canto-daemon        canto-daemon
 #   MONITOR=$mon launch_once polybar             polybar -r watari
 # done
 
-
 # unlock, just to be sure
 hc unlock
-
 
 # hc set window_border_active_color `xgetres .foreground`
 # hc set window_border_urgent_color `xgetres .color11`
